@@ -1,0 +1,38 @@
+#prof {
+    margin-top: 60px;
+}
+
+.jumbotron {
+    background-color: red;
+    color: white;
+    padding: 100px 25px;
+}
+
+.container-fluid {
+    padding: 60px 50px;
+}
+
+.conteneur {
+    padding: 0;
+}
+
+.logo {
+    font-size: 100px;
+    color: red;
+}
+
+.matieres {
+    margin:60px 0;
+}
+
+.home {
+    background-image: url("particulier.jpg");
+    background-repeat: no-repeat;
+    height: 866px;
+}
+
+.web {
+    background-image: url("webcam.jpg");
+    background-repeat: no-repeat;
+    height: 866px;
+}
