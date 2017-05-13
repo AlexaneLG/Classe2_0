@@ -13,7 +13,7 @@
                 <li class="active"><a href="Accueil.php">Accueil</a></li>
                 <?php
                     if(isset($_SESSION['firstname'])){
-                        echo "<li><a href='#'>".$_SESSION['firstname']."</a></li>";
+                        echo "<li><a href='Profil.php'>".$_SESSION['firstname']."</a></li>";
                     }else{
                         echo "<li><a href='#'>Profil</a></li>";
                     }
