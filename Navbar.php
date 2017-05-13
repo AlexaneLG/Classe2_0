@@ -1,3 +1,11 @@
+<?php
+    if (isset($_POST['deconnexion'])){
+        session_destroy();
+        unset($_SESSION);
+        echo "<script type='text/javascript'>document.location.replace('Accueil.php');</script>";
+    }
+?>
+
 <link rel="icon" type="image/png" href="favicon.ico" />
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -24,11 +32,20 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black"><span class="glyphicon glyphicon-log-in"></span> Connexion</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#ModalConnexion">Connexion</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#ModalInscription">Inscription</a></li>
-                    </ul>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black">
+                            <?php
+                                if(!isset($_SESSION['firstname'])){
+                                    echo "<span class='glyphicon glyphicon-log-in'></span> Connexion</a>
+                                    <ul class='dropdown-menu'>
+                                        <li><a href='#' data-toggle='modal' data-target='#ModalConnexion'>Connexion</a></li>
+                                        <li><a href='#' data-toggle='modal' data-target='#ModalInscription'>Inscription</a></li>
+                                    </ul>";
+                                }else{
+                                    echo "<span class='glyphicon glyphicon-log-out'></span>
+                                    <form action='".$_SERVER['PHP_SELF']."' method='post' style='display:inline'>
+			                        <input type='submit' value='Déconnexion' name='deconnexion' style='background-color:transparent;border:none;margin:0;padding:0;'/></form></a>";
+                                }
+                            ?>
                 </li>
             </ul>
         </div>
