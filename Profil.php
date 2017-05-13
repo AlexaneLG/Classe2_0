@@ -1,6 +1,4 @@
-<?php
-include("head.php");
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +37,21 @@ include("head.php");
     </style>
 </head>
 <body>
+<?php include("Navbar.php"); ?>
 
 <div class="container-fluid">
     <div class="row content">
         <div class="col-sm-3 sidenav">
-            <h4>John's Blog</h4>
+            <h4><?php echo $_SESSION['firstname']; ?></h4>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#section1">Home</a></li>
-                <li><a href="#section2">Friends</a></li>
+                <li class="active dropdown">
+                    <a href="#section1 dropdown-toggle" data-toggle="dropdown" style="color:black">Rendez-vous</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#ModalProfil">Nouveau rendez-vous</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#ModalInscription">Visionconférence</a></li>
+                    </ul>
+                </li>
+                <li><a href="#section2">Notifications</a></li>
                 <li><a href="#section3">Family</a></li>
                 <li><a href="#section3">Photos</a></li>
             </ul><br>
@@ -57,6 +62,7 @@ include("head.php");
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>
+
             </div>
         </div>
 
@@ -116,6 +122,35 @@ include("head.php");
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ModalProfil" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Nouveau rendez-vous</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="Loadingdata.php" method="post" class="form-horizontal" >
+                            <label for="usernameInput">Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <br>
+                            <label for="passwordInput">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+                            <br>
+                            <button type="submit" class="btn btn-primary center-block" name="buttonconnexion">Log in</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="pull-left">Forgot your password?</a>
+                        <p>Pas encore membre? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#ModalInscription">Inscrit </a>toi dès maintenant</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
