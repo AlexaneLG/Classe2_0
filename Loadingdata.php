@@ -69,6 +69,27 @@ VALUES(:firstname, :lastname, :email, :password, :account)');
         else{ //Connexion reussie
             header("refresh:0;url=Accueil.php");
         }
+    } else if (isset($_POST['buttonmeeting'])) {
+        if (isset($_POST['date']) == "" || isset($_POST['heure']) == "") {
+            header("refresh:0;url=Profil.php?rdv=0");
+            echo "<script>alert('Veuiller complèter tout le formulaire.')</script>";
+        } else {
+            $request = $bdd->prepare('SELECT id_course FROM course WHERE chapter = ?');
+            $request->execute(array($_POST['chapter']));
+            $donnee = $request->fetch();
+            $idCourse = $donnee['id_course'];
+
+            $request = $bdd->prepare('INSERT INTO meeting(date, hour, numhours, id_student, id_course) 
+VALUES (:date, :hour, :numhours, :id_student, :id_course)');
+            $request->execute(array(
+                'date' => $_POST['date'],
+                'hour' => $_POST['heure'],
+                'numhours' => $_POST['nombreHeure'],
+                'id_student' => $_SESSION['id'],
+                'id_course' => $idCourse
+            ));
+            header("refresh:0;url=Profil.php?rdv=1");
+        }
     }
 
 ?>

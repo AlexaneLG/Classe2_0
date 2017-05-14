@@ -78,6 +78,13 @@
 
         <div class="col-sm-9">
             <?php
+            if (isset($_GET['rdv'])){
+                if ($_GET['rdv'] == 1) {
+                    echo "<h5><span style='width: 100%; padding: 10px; text-align: center;' class=\"label label-success\">Rendez-vous soumis avec succès.</span></h5><br>";
+                } else {
+                    echo "<h5><span style='width: 100%; padding: 10px; text-align: center;' class=\"label label-danger\">Échec</span></h5><br>";
+                }
+            }
             if(isset($_GET['index'])){
                 if($_GET['index'] == 3){
                     include('annonces.php');
@@ -153,27 +160,45 @@
                     <div class="modal-body">
 
                         <form action="Loadingdata.php" method="post" class="form-horizontal" >
-                            <label for="dateInput">Date</label>
+                            <label for="dateInput">Heure</label>
                             <div class="input-group bootstrap-timepicker timepicker">
-                                <input id="timepicker2" type="text" class="form-control input-small">
+                                <input id="timepicker2" type="text" name="heure" class="form-control input-small">
                                 <span class="input-group-addon">
                 <i class="glyphicon glyphicon-time"></i>
             </span>
                             </div>
 
-                            <label for="hourInput">Heure</label>
+                            <label for="hourInput">Date</label>
                             <div class="input-group date" data-provide="datepicker">
-                                <input id="datepicker" type="text" class="form-control input-small">
+                                <input id="datepicker" type="text" name="date" class="form-control input-small">
                                 <span class="input-group-addon">
                 <i class="glyphicon glyphicon-th"></i>
             </span>
                             </div>
 
                             <label for="numhoursInput">Nombre d'heures</label>
-                            <select class="form-control">
+                            <select class="form-control" name="nombreHeure">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
+                            </select>
+
+                            <label for="numhoursInput">Matière</label>
+                            <select id="matiere" class="form-control" name="matiere">
+                                <option></option>
+                                <option>Mathématiques</option>
+                                <option>Physique</option>
+                                <option>Sciences de la vie et de la terre</option>
+                                <option>Philosophie</option>
+                                <option>Histoire</option>
+                                <option>Géographie</option>
+                                <option>Anglais</option>
+                                <option>Espagnol</option>
+                            </select>
+
+                            <label for="chapitreInput">Chapitre</label>
+                            <select id="chapitre" class="form-control" name="chapter">
+
                             </select>
 
                             <script type="text/javascript">
@@ -187,17 +212,14 @@
                                 });
 
                                 $('.datepicker').datepicker({
-                                    format: 'mm/dd/yyyy',
+                                    format: 'yyyy/mm/dd',
                                     startDate: '-3d'
                                 });
                             </script>
 
+                            <button type="submit" class="btn btn-primary center-block" name="buttonmeeting">Envoyer</button>
 
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="pull-left">Forgot your password?</a>
-                        <p>Pas encore membre? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#ModalInscription">Inscrit </a>toi dès maintenant</p>
                     </div>
                 </div>
 
@@ -209,6 +231,30 @@
 <footer class="container-fluid">
     <p>Footer Text</p>
 </footer>
+
+<script>
+    $(function(){
+        $('#matiere').change(function() {
+            var m = $('#matiere').val();
+            $.ajax({
+                url : 'chapitres.php',
+                type : 'get',
+                data : {matiere : m},
+                success : function(data){
+                    $('#chapitre').empty();
+                    var donnees = data;
+                    if(data != ""){
+                        var tab = donnees.split(',');
+                        var j = (tab.length) - 1;
+                        for (var i = 1; i <= j; i++){
+                            $('#chapitre').append("<option>"+tab[i]+"</option>");
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
