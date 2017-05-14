@@ -36,5 +36,26 @@ if($_SESSION['account'] == "prof") {
         }
         $i++;
     }
+} else {
+    $request = $bdd->prepare('SELECT * FROM meeting
+    INNER JOIN teacher_meeting ON teacher_meeting.id_meeting = meeting.id_meeting 
+    INNER JOIN course ON course.id_course = meeting.id_course 
+    INNER JOIN category ON category.id_category = course.id_category 
+    INNER JOIN user ON user.id = teacher_meeting.id_prof 
+    WHERE id_student = ? ');
+    $request->execute(array($_SESSION['id']));
+    $meetings = $request->fetchAll(PDO::FETCH_ASSOC);
+    $i = 1;
+    foreach ($meetings as  $value) {
+
+        echo "<h4><small>RENDEZ-VOUS N°" . $i . "</small></h4>
+        <hr>
+        <h2>" . $value['content'] . "</h2>
+        <h5><span class=\"glyphicon glyphicon-time\"></span> Posté le " . $value['date'] . " " . $value['hour'] . ".</h5>
+        <h5>Professeur volontaire : ".$value['firstname']." <form><input type='hidden' value=".$value['id_prof']."><input name='profaccepte' type='submit'></form></h5>";
+        echo "<br>";
+        $i++;
+    }
+
 }
 ?>
