@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 13 Mai 2017 à 22:13
+-- Généré le :  Dim 14 Mai 2017 à 00:41
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -31,6 +31,14 @@ CREATE TABLE `category` (
   `content` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `category`
+--
+
+INSERT INTO `category` (`id_category`, `content`) VALUES
+(1, 'Programmation C'),
+(2, 'Algorithmique');
+
 -- --------------------------------------------------------
 
 --
@@ -40,8 +48,16 @@ CREATE TABLE `category` (
 CREATE TABLE `course` (
   `id_course` int(11) NOT NULL,
   `chapter` int(11) NOT NULL,
-  `subject` varchar(30) NOT NULL
+  `id_category` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `course`
+--
+
+INSERT INTO `course` (`id_course`, `chapter`, `id_category`) VALUES
+(1, 3, '1'),
+(2, 3, '2');
 
 -- --------------------------------------------------------
 
@@ -67,10 +83,18 @@ CREATE TABLE `meeting` (
   `date` date NOT NULL,
   `hour` datetime NOT NULL,
   `numhours` datetime NOT NULL,
-  `id_prof` int(11) NOT NULL,
+  `id_prof` int(11) DEFAULT NULL,
   `id_student` int(11) NOT NULL,
   `id_course` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `meeting`
+--
+
+INSERT INTO `meeting` (`id_meeting`, `date`, `hour`, `numhours`, `id_prof`, `id_student`, `id_course`) VALUES
+(1, '2017-05-14', '2017-05-14 04:22:16', '2017-05-14 05:19:20', NULL, 9, 1),
+(2, '2017-05-14', '2017-05-14 04:22:16', '2017-05-14 05:19:20', NULL, 9, 2);
 
 -- --------------------------------------------------------
 
@@ -107,7 +131,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `account`, `mark`) VALUES
 (7, 'Olivier', 'LEUNG', 'olivierleung@hotmail.fr', '123456789', 'user', 0),
 (8, 'Alex', 'LEUNG', 'aleung@hotmail.fr', '123456789', 'on', 0),
-(9, 'Alexane', 'LE GUERN', 'alexane.lgrn@gmail.com', 'km', 'user', 0);
+(9, 'Alexane', 'LE GUERN', 'alexane.lgrn@gmail.com', 'km', 'prof', 0);
 
 -- --------------------------------------------------------
 
@@ -120,6 +144,14 @@ CREATE TABLE `user_category` (
   `id_user` int(11) NOT NULL,
   `id_category` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user_category`
+--
+
+INSERT INTO `user_category` (`id_user_category`, `id_user`, `id_category`) VALUES
+(1, 9, 1),
+(2, 9, 2);
 
 --
 -- Index pour les tables exportées
@@ -135,7 +167,8 @@ ALTER TABLE `category`
 -- Index pour la table `course`
 --
 ALTER TABLE `course`
-  ADD PRIMARY KEY (`id_course`);
+  ADD PRIMARY KEY (`id_course`),
+  ADD KEY `id_category` (`id_category`);
 
 --
 -- Index pour la table `feedback`
@@ -184,12 +217,12 @@ ALTER TABLE `user_category`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `feedback`
 --
@@ -199,7 +232,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT pour la table `meeting`
 --
 ALTER TABLE `meeting`
-  MODIFY `id_meeting` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_meeting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `professor_meeting`
 --
@@ -214,7 +247,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `user_category`
 --
 ALTER TABLE `user_category`
-  MODIFY `id_user_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

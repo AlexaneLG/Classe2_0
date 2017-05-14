@@ -43,6 +43,7 @@ VALUES(:firstname, :lastname, :email, :password, :account)');
                 else{
                     if($_POST['password'] == $donnee['password']){
                         $connexion = true;
+                        $_SESSION['id'] = $donnee['id'];
                         $_SESSION['firstname'] = $donnee['firstname'];
                         $_SESSION['lastname'] = $donnee['lastname'];
                         $_SESSION['email'] = $donnee['email'];

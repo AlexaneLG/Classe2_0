@@ -61,7 +61,7 @@
                     </ul>
                 </li>
                 <li><a href="#section2">Notifications</a></li>
-                <li><a href="#section3">Annonces</a></li>
+                <li><a href="Profil.php?index=3">Annonces</a></li>
                 <li><a href="#section3">Photos</a></li>
             </ul><br>
             <div class="input-group">
@@ -77,6 +77,13 @@
         </div>
 
         <div class="col-sm-9">
+            <?php
+            if(isset($_GET['index'])){
+                if($_GET['index'] == 3){
+                    include('annonces.php');
+                }
+            }
+            ?>
             <h4><small>RECENT POSTS</small></h4>
             <hr>
             <h2>I Love Food</h2>
