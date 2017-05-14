@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 14 Mai 2017 à 18:39
--- Version du serveur :  10.1.21-MariaDB
--- Version de PHP :  5.6.30
+-- Généré le :  Dim 14 Mai 2017 à 17:59
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -134,7 +134,7 @@ CREATE TABLE `teacher_meeting` (
   `id_teacher_meeting` int(11) NOT NULL,
   `id_meeting` int(11) NOT NULL,
   `id_prof` int(11) NOT NULL,
-  `state` int(11) NOT NULL
+  `state` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -168,7 +168,8 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `account
 (7, 'Olivier', 'LEUNG', 'olivierleung@hotmail.fr', '123456789', 'user', 0),
 (8, 'Alex', 'LEUNG', 'aleung@hotmail.fr', '123456789', 'on', 0),
 (9, 'Alexane', 'LE GUERN', 'alexane.lgrn@gmail.com', 'km', 'prof', 0),
-(10, 'Jean-Daniel', 'PALLUD', 'j.d.du972@hotmail.fr', '123456', 'user', 0);
+(10, 'Jean-Daniel', 'PALLUD', 'j.d.du972@hotmail.fr', '123456', 'user', 0),
+(11, 'Miaouss', 'MIAOUSS', 'miaouss@miaou.me', 'km', 'user', 0);
 
 -- --------------------------------------------------------
 
@@ -289,7 +290,7 @@ ALTER TABLE `teacher_meeting`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `user_category`
 --
