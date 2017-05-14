@@ -19,6 +19,10 @@ if($_SESSION['account'] == "prof"){
         <hr>
         <h2>".$donnee['content']."</h2>
         <h5><span class=\"glyphicon glyphicon-time\"></span> Posté par ".$donnee['firstname'].", ".$donnee['date']." ".$donnee['hour'].".</h5><br>
+        <form action='Loadingdata.php' method='post'>
+            <input type='hidden' name='idMeeting' value=".$donnee['id_meeting'].">
+            <input type='submit' value='Postuler'>
+        </form>
         <br>";
         $i ++;
     }

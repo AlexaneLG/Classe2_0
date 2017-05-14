@@ -29,7 +29,7 @@ VALUES(:firstname, :lastname, :email, :password, :account)');
         header("refresh:0;url=Accueil.php");
 
     }
-    else if(isset($_POST['buttonconnexion'])){ //Lors de la connexion
+    elseif(isset($_POST['buttonconnexion'])){ //Lors de la connexion
         $connexion = false;
         if(!empty($_POST['email'])){
             $request = $bdd->prepare('SELECT * FROM  user WHERE email = ?');
@@ -69,7 +69,7 @@ VALUES(:firstname, :lastname, :email, :password, :account)');
         else{ //Connexion reussie
             header("refresh:0;url=Accueil.php");
         }
-    } else if (isset($_POST['buttonmeeting'])) {
+    } elseif (isset($_POST['buttonmeeting'])) {
         if (isset($_POST['date']) == "" || isset($_POST['heure']) == "") {
             header("refresh:0;url=Profil.php?rdv=0");
             echo "<script>alert('Veuiller complèter tout le formulaire.')</script>";
@@ -90,6 +90,15 @@ VALUES (:date, :hour, :numhours, :id_student, :id_course)');
             ));
             header("refresh:0;url=Profil.php?rdv=1");
         }
+    } elseif (isset($_POST['idMeeting'])) {
+        $request = $bdd->prepare('INSERT INTO teacher_meeting(id_meeting, id_prof, state)
+VALUES (:id_meeting, :id_prof, :state)');
+        $request->execute(array(
+            'id_meeting' => $_POST['idMeeting'],
+            'id_prof' => $_SESSION['id'],
+            'state' => 0
+        ));
+        header("refresh:0;url=Profil.php?index=3&rdv=2");
     }
 
 ?>

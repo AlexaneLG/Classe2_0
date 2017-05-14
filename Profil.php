@@ -60,7 +60,7 @@
                         <li><a href="#" data-toggle="modal" data-target="#ModalInscription">Visionconférence</a></li>
                     </ul>
                 </li>
-                <li><a href="#section2">Notifications</a></li>
+                <li><a href="Profil.php?index=2">Notifications</a></li>
                 <li><a href="Profil.php?index=3">Annonces</a></li>
                 <li><a href="#section3">Photos</a></li>
             </ul><br>
@@ -81,6 +81,8 @@
             if (isset($_GET['rdv'])){
                 if ($_GET['rdv'] == 1) {
                     echo "<h5><span style='width: 100%; padding: 10px; text-align: center;' class=\"label label-success\">Rendez-vous soumis avec succès.</span></h5><br>";
+                } else if ($_GET['rdv'] == 2) {
+                    echo "<h5><span style='width: 100%; padding: 10px; text-align: center;' class=\"label label-success\">Validé, en attente d'une réponse.</span></h5><br>";
                 } else {
                     echo "<h5><span style='width: 100%; padding: 10px; text-align: center;' class=\"label label-danger\">Échec</span></h5><br>";
                 }
@@ -88,6 +90,8 @@
             if(isset($_GET['index'])){
                 if($_GET['index'] == 3){
                     include('annonces.php');
+                } else if ($_GET['index'] == 2) {
+                    include('notification.php');
                 }
             }
             ?>
