@@ -6,9 +6,18 @@
     <title>Profil</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link type="text/css" href="bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" href="bootstrap-timepicker/css/bootstrap-timepicker.min.css" />
+    <link type="text/css" href="bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="Moment.js/moment.js"></script>
+    <script type="text/javascript" src="bootstrap/js/transition.js"></script>
+    <script type="text/javascript" src="bootstrap/js/collapse.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript" src="bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <style>
         /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
         .row.content {height: 1500px}
@@ -52,7 +61,7 @@
                     </ul>
                 </li>
                 <li><a href="#section2">Notifications</a></li>
-                <li><a href="#section3">Family</a></li>
+                <li><a href="#section3">Annonces</a></li>
                 <li><a href="#section3">Photos</a></li>
             </ul><br>
             <div class="input-group">
@@ -64,6 +73,7 @@
         </span>
 
             </div>
+
         </div>
 
         <div class="col-sm-9">
@@ -136,13 +146,46 @@
                     <div class="modal-body">
 
                         <form action="Loadingdata.php" method="post" class="form-horizontal" >
-                            <label for="usernameInput">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Email">
-                            <br>
-                            <label for="passwordInput">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Mot de passe">
-                            <br>
-                            <button type="submit" class="btn btn-primary center-block" name="buttonconnexion">Log in</button>
+                            <label for="dateInput">Date</label>
+                            <div class="input-group bootstrap-timepicker timepicker">
+                                <input id="timepicker2" type="text" class="form-control input-small">
+                                <span class="input-group-addon">
+                <i class="glyphicon glyphicon-time"></i>
+            </span>
+                            </div>
+
+                            <label for="hourInput">Heure</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input id="datepicker" type="text" class="form-control input-small">
+                                <span class="input-group-addon">
+                <i class="glyphicon glyphicon-th"></i>
+            </span>
+                            </div>
+
+                            <label for="numhoursInput">Nombre d'heures</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+
+                            <script type="text/javascript">
+                                $('#timepicker2').timepicker({
+                                    minuteStep: 15,
+                                    template: 'modal',
+                                    appendWidgetTo: 'body',
+                                    showSeconds: false,
+                                    showMeridian: false,
+                                    defaultTime: false
+                                });
+
+                                $('.datepicker').datepicker({
+                                    format: 'mm/dd/yyyy',
+                                    startDate: '-3d'
+                                });
+                            </script>
+
+
                         </form>
                     </div>
                     <div class="modal-footer">
