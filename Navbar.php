@@ -28,7 +28,6 @@
                     }
                 ?>
                 <li><a href="#">Cours</a></li>
-                <li><a href="#">Rendez-vous</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -138,6 +137,15 @@
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                         <input type="password" class="form-control" name="confirmpassword" id="confirmpassword"  placeholder="Confirm your Password"/>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userInput" class="cols-sm-2 control-label">Type d'utilisateur</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio" value="user"/>Élève</label>
+                                    <label><input type="radio" name="optradio" value="prof"/>Professeur</label>
+
                                 </div>
                             </div>
 

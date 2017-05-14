@@ -17,13 +17,13 @@ VALUES(:firstname, :lastname, :email, :password, :account)');
                 'lastname' => $_POST['lastname'],
                 'email' => $_POST['email'],
                 'password' => $_POST['password'],
-                'account' => "user",
+                'account' => $_POST['optradio'],
             ));
             $_SESSION['firstname'] = $_POST['firstname'];
             $_SESSION['lastname'] = $_POST['lastname'];
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['password'] = $_POST['password'];
-            $_SESSION['account'] = "user";
+            $_SESSION['account'] = $_POST['optradio'];
         }
 
         header("refresh:0;url=Accueil.php");
