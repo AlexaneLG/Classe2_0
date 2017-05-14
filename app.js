@@ -5,8 +5,7 @@
 var app = angular.module('chatApp', ['firebase']);
 
 app.controller('ChatController', function ($scope, $firebaseArray) {
-    var BDDref = firebase.database().ref()
-    BDDref.child('messages');
+    var BDDref = firebase.database().ref().child('messages')
     $scope.messages = $firebaseArray(BDDref);
 
     $scope.send = function(){

@@ -57,7 +57,7 @@
                     <a href="#section1 dropdown-toggle" data-toggle="dropdown" style="color:black">Rendez-vous</a>
                     <ul class="dropdown-menu">
                         <li><a href="#" data-toggle="modal" data-target="#ModalProfil">Nouveau rendez-vous</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#ModalInscription">Visionconférence</a></li>
+                        <li><a href="Salon.php">Visionconférence</a></li>
                     </ul>
                 </li>
                 <li><a href="Profil.php?index=2">Notifications</a></li>

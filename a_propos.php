@@ -39,7 +39,7 @@
     </head>
 
     <body>
-        <?php include('Navbar.php');?>
+        <?php include('Top.php');?>
             <div class="jumbotron text-center">
                 <h1>Une nouvelle façon d'apprendre</h1>
                 <p>Trouvez facilement des professeurs particuliers pour le lycée général</p>

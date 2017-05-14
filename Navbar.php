@@ -5,7 +5,7 @@
         echo "<script type='text/javascript'>document.location.replace('Accueil.php');</script>";
     }
 ?>
-
+<!doctype html>
 <link rel="icon" type="image/png" href="favicon.ico" />
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
