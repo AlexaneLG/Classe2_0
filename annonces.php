@@ -31,11 +31,22 @@ if($_SESSION['account'] == "prof"){
         <h5><span class=\"glyphicon glyphicon-time\"></span> Posté par ".$donnee['firstname'].", ".$donnee['date']." ".$donnee['hour'].".</h5><br>
         <form action='Loadingdata.php' method='post'>
             <input type='hidden' name='idMeeting' value=".$donnee['id_meeting'].">";
-        if ($donnee['state'] == NULL) {
+        /*if ($donnee['state'] == NULL) {
             echo "<input type='submit' value='Postuler'>";
         } else {
             echo "<span class=\"label label-primary\">Vous avez déjà postulé à cette annonce.</span>";
+        }*/
+
+        $request2 = $bdd->prepare('SELECT state FROM teacher_meating 
+        WHERE teacher_meeting.id_meeting = ?');
+        $request2->execute(array($donnee['id_meeting']));
+        $etat = $request2->fetch();
+        if (isset($etat)) {
+            echo "<span class=\"label label-primary\">Vous avez déjà postulé à cette annonce.</span>";
+        } else {
+            echo "<input type='submit' value='Postuler'>";
         }
+
         echo "</form>
         <br>";
         $i ++;

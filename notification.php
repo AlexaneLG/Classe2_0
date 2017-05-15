@@ -44,9 +44,9 @@ if($_SESSION['account'] == "prof") {
     INNER JOIN user ON user.id = teacher_meeting.id_prof 
     WHERE id_student = ? ');
     $request->execute(array($_SESSION['id']));
-    $meetings = $request->fetchAll(PDO::FETCH_ASSOC);
+    $meetings = $request->fetchAll(PDO::FETCH_BOTH);
 
-    $request2 = $bdd->prepare('SELECT id_prof.meeting FROM meeting
+    /*$request2 = $bdd->prepare('SELECT id_prof FROM meeting
     INNER JOIN teacher_meeting ON teacher_meeting.id_meeting = meeting.id_meeting 
     INNER JOIN course ON course.id_course = meeting.id_course 
     INNER JOIN category ON category.id_category = course.id_category 
@@ -54,7 +54,7 @@ if($_SESSION['account'] == "prof") {
     WHERE id_student = ? ');
     $request2->execute(array($_SESSION['id']));
     $idProf = $request2->fetchAll(PDO::FETCH_ASSOC);
-
+    */
     $i = 1;
     foreach ($meetings as  $value) {
         echo "<h4><small>RENDEZ-VOUS N°" . $i . "</small></h4>
@@ -63,10 +63,10 @@ if($_SESSION['account'] == "prof") {
         <h5><span class=\"glyphicon glyphicon-time\"></span> Posté le " . $value['date'] . " " . $value['hour'] . ".</h5>
         <h5>Professeur volontaire : ".$value['firstname'];
 
-        echo "<script>console.log(".$value['id_prof'].")</script>";
-        if ($value['id_prof'] == NULL) {
-            echo " <form action='Loadingdata.php' method='POST'><input type='hidden' name='idTeacherMeeting' value=".$value['id_teacher_meeting']."><input name='buttonprofaccepte' type='submit' value='Accepter'></form></h5>";
-        }else {
+        //echo "<script>console.log(".$value['id_prof'].")</script>";
+        if ($value[4] == NULL) {
+            echo "<br><br><form action='Loadingdata.php' method='POST'><input type='hidden' name='idTeacherMeeting' value=".$value['id_teacher_meeting']."><input name='buttonprofaccepte' type='submit' value='Accepter'></form></h5>";
+        } else {
             switch ($value['state']) {
                 case 0:
                     echo "<h5><span class='label label-primary'>En attente</span></h5><br>";
