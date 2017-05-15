@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 15 Mai 2017 à 00:54
+-- Généré le :  Lun 15 Mai 2017 à 02:26
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -108,21 +108,9 @@ CREATE TABLE `meeting` (
 INSERT INTO `meeting` (`id_meeting`, `date`, `hour`, `numhours`, `id_prof`, `id_student`, `id_course`) VALUES
 (1, '2017-05-14', '04:22:16', 1, NULL, 9, 1),
 (2, '2017-05-14', '04:22:16', 2, NULL, 9, 2),
-(9, '05/15/2017', '18:45:00', 2, 9, 10, 5),
+(9, '05/15/2017', '18:45:00', 2, NULL, 10, 5),
 (8, '05/15/2017', '20:00:00', 1, NULL, 10, 3),
 (7, '05/15/2017', '22:00:00', 2, NULL, 10, 4);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `professor_meeting`
---
-
-CREATE TABLE `professor_meeting` (
-  `id_professor_meeting` int(11) NOT NULL,
-  `id_meeting` int(11) NOT NULL,
-  `id_professor` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -142,7 +130,7 @@ CREATE TABLE `teacher_meeting` (
 --
 
 INSERT INTO `teacher_meeting` (`id_teacher_meeting`, `id_meeting`, `id_prof`, `state`) VALUES
-(1, 9, 9, 1);
+(1, 9, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -225,14 +213,6 @@ ALTER TABLE `meeting`
   ADD KEY `id_course` (`id_course`);
 
 --
--- Index pour la table `professor_meeting`
---
-ALTER TABLE `professor_meeting`
-  ADD PRIMARY KEY (`id_professor_meeting`),
-  ADD KEY `id_meeting` (`id_meeting`),
-  ADD KEY `id_professor` (`id_professor`);
-
---
 -- Index pour la table `teacher_meeting`
 --
 ALTER TABLE `teacher_meeting`
@@ -277,15 +257,10 @@ ALTER TABLE `feedback`
 ALTER TABLE `meeting`
   MODIFY `id_meeting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT pour la table `professor_meeting`
---
-ALTER TABLE `professor_meeting`
-  MODIFY `id_professor_meeting` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `teacher_meeting`
 --
 ALTER TABLE `teacher_meeting`
-  MODIFY `id_teacher_meeting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_teacher_meeting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
