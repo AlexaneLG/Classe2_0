@@ -12,6 +12,7 @@ if($_SESSION['account'] == "prof"){
     SELECT a.id_category FROM user_category AS a 
     INNER JOIN category AS b ON a.id_category = b.id_category 
  )');*/
+    /*SELECT * FROM meeting JOIN course WHERE course.id_category IN ( SELECT id_category FROM user_category WHERE id_user = ? )*/
     $request = $bdd->prepare('SELECT * FROM meeting 
     INNER JOIN course ON meeting.id_course = course.id_course 
     INNER JOIN category ON course.id_category = category.id_category 
@@ -40,8 +41,9 @@ if($_SESSION['account'] == "prof"){
         $request2 = $bdd->prepare('SELECT state FROM teacher_meating 
         WHERE teacher_meeting.id_meeting = ?');
         $request2->execute(array($donnee['id_meeting']));
-        $etat = $request2->fetch();
-        if (isset($etat)) {
+        $etat = $request2->fetch(PDO::FETCH_BOTH);
+
+        if ($etat[1] == NULL) {
             echo "<span class=\"label label-primary\">Vous avez déjà postulé à cette annonce.</span>";
         } else {
             echo "<input type='submit' value='Postuler'>";

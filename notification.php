@@ -22,6 +22,7 @@ if($_SESSION['account'] == "prof") {
         echo "<h4><small>RENDEZ-VOUS N°" . $i . "</small></h4>
         <hr>
         <h2>" . $donnee['content'] . "</h2>
+        <h4>".$donnee['chapter']."</h4>
         <h5><span class=\"glyphicon glyphicon-time\"></span> Posté par " . $donnee['firstname'] . ", " . $donnee['date'] . " " . $donnee['hour'] . ".</h5>
         ";
         switch ($donnee['state']) {
@@ -60,6 +61,7 @@ if($_SESSION['account'] == "prof") {
         echo "<h4><small>RENDEZ-VOUS N°" . $i . "</small></h4>
         <hr>
         <h2>" . $value['content'] . "</h2>
+        <h4>".$value['chapter']."</h4>
         <h5><span class=\"glyphicon glyphicon-time\"></span> Posté le " . $value['date'] . " " . $value['hour'] . ".</h5>
         <h5>Professeur volontaire : ".$value['firstname'];
 
