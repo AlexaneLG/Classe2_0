@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 14 Mai 2017 à 17:59
+-- Généré le :  Lun 15 Mai 2017 à 00:54
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -108,7 +108,7 @@ CREATE TABLE `meeting` (
 INSERT INTO `meeting` (`id_meeting`, `date`, `hour`, `numhours`, `id_prof`, `id_student`, `id_course`) VALUES
 (1, '2017-05-14', '04:22:16', 1, NULL, 9, 1),
 (2, '2017-05-14', '04:22:16', 2, NULL, 9, 2),
-(9, '05/15/2017', '18:45:00', 2, NULL, 10, 5),
+(9, '05/15/2017', '18:45:00', 2, 9, 10, 5),
 (8, '05/15/2017', '20:00:00', 1, NULL, 10, 3),
 (7, '05/15/2017', '22:00:00', 2, NULL, 10, 4);
 
@@ -142,7 +142,7 @@ CREATE TABLE `teacher_meeting` (
 --
 
 INSERT INTO `teacher_meeting` (`id_teacher_meeting`, `id_meeting`, `id_prof`, `state`) VALUES
-(1, 9, 9, 0);
+(1, 9, 9, 1);
 
 -- --------------------------------------------------------
 
