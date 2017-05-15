@@ -62,12 +62,8 @@
                 </li>
                 <li><a href="Profil.php?index=2">Notifications</a></li>
                 <li><a href="Profil.php?index=3">Annonces</a></li>
-                <li><a href="Profil.php?index=3">Mon profil</a></li>
+                <li><a href="Profil.php?index=4">Mon profil</a></li>
             </ul><br>
-        </span>
-
-            </div>
-
         </div>
 
         <div class="col-sm-9">

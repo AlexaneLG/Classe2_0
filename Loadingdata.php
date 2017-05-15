@@ -99,6 +99,21 @@ VALUES (:id_meeting, :id_prof, :state)');
             'state' => 0
         ));
         header("refresh:0;url=Profil.php?index=3&rdv=2");
+    } elseif (isset($_POST['buttonprofaccepte'])) {
+        $request1 = $bdd->prepare('UPDATE teacher_meeting SET state = 1 WHERE id_teacher_meeting = ?');
+        $request1->execute(array($_POST['idTeacherMeeting']));
+        $request2 = $bdd->prepare('UPDATE teacher_meeting SET state = 2 WHERE NOT id_teacher_meeting = ?');
+        $request2->execute(array($_POST['idTeacherMeeting']));
+        $request3 = $bdd->prepare('SELECT * FROM teacher_meeting WHERE id_teacher_meeting = ?');
+        $request3->execute(array($_POST['idTeacherMeeting']));
+        $teacherMeeting = $request3->fetchAll(PDO::FETCH_ASSOC);
+        $request4 = $bdd->prepare('UPDATE meeting SET id_prof = ? WHERE id_meeting = ?');
+        foreach ($teacherMeeting as  $value) {
+            $idProf = $value['id_prof'];
+            $idMeeting = $value['id_meeting'];
+        }
+        $request4->execute(array($idProf, $idMeeting));
+        header("refresh:0;url=Profil.php?index=2");
     }
 
 ?>
