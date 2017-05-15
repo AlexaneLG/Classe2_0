@@ -3,7 +3,7 @@
 include("ConnexionBDD.php");
 
 if($_SESSION['account'] == "prof"){
-    $request = $bdd->prepare('SELECT * FROM meeting 
+    /*$request = $bdd->prepare('SELECT * FROM meeting
     INNER JOIN course ON meeting.id_course = course.id_course 
     INNER JOIN category ON course.id_category = category.id_category 
     INNER JOIN user ON meeting.id_student = user.id
@@ -11,7 +11,16 @@ if($_SESSION['account'] == "prof"){
     WHERE category.id_category IN ( 
     SELECT a.id_category FROM user_category AS a 
     INNER JOIN category AS b ON a.id_category = b.id_category 
- )');
+ )');*/
+    $request = $bdd->prepare('SELECT * FROM meeting 
+    INNER JOIN course ON meeting.id_course = course.id_course 
+    INNER JOIN category ON course.id_category = category.id_category 
+    INNER JOIN user ON meeting.id_student = user.id
+    WHERE category.content IN (
+    	SELECT content FROM user_category
+        INNER JOIN category ON category.id_category = user_category.id_category
+        WHERE user_category.id_user = 9
+    )');
     $request->execute(array($_SESSION['id']));
     $i = 1;
     while($donnee = $request->fetch()){
